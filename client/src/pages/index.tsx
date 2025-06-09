@@ -121,9 +121,9 @@ export default function SvgSlider() {
   //     try {
   //       const [internshipres, jobres] = await Promise.all([
   //         axios.get(
-  //           'https://internshala-clone-y2p2.onrender.com/api/internship'
+  //           'https://internshalarepo.onrender.com/api/internship'
   //         ),
-  //         axios.get('https://internshala-clone-y2p2.onrender.com/api/job'),
+  //         axios.get('https://internshalarepo.onrender.com/api/job'),
   //       ]);
   //       setInternship(internshipres.data);
   //       setJobs(jobres.data);
