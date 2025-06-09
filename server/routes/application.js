@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const application = require('../Model/Application');
+const application = require('../models/Application');
 
 router.post('/', async (req, res) => {
   const applicationipdata = new application({
