@@ -12,40 +12,24 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-// const internshipData = [
-//   {
-//     _id: "1",
-//     title: "Frontend Developer Intern",
-//     company: "TechCorp",
-//     StartDate: "April 2025",
-//     Duration: "3 Months",
-//     stipend: "$500/month",
-//     category: "Web Development",
-//     location: "New York",
-//   },
-//   {
-//     _id: "2",
-//     title: "Data Science Intern",
-//     company: "DataTech",
-//     StartDate: "May 2025",
-//     Duration: "6 Months",
-//     stipend: "$800/month",
-//     category: "Data Science",
-//     location: "San Francisco",
-//   },
-//   {
-//     _id: "3",
-//     title: "Marketing Intern",
-//     company: "MarketPro",
-//     StartDate: "June 2025",
-//     Duration: "4 Months",
-//     stipend: "$400/month",
-//     category: "Marketing",
-//     location: "Los Angeles",
-//   },
-// ];
+type Internship = {
+  _id: string;
+  title: string;
+  company: string;
+  StartDate: string;
+  Duration: string;
+  stipend: string;
+  category: string;
+  location: string;
+};
+
 const index = () => {
-  const [filteredInternships, setfilteredInternships] = useState<any>([]);
+  const [filteredInternships, setFilteredInternships] = useState<Internship[]>(
+    []
+  );
+
+  const [internshipData, setinternship] = useState<Internship[]>([]);
+
   const [isFiltervisible, setisFiltervisible] = useState(false);
   const [filter, setfilters] = useState({
     category: '',
@@ -54,15 +38,15 @@ const index = () => {
     partTime: false,
     stipend: 50,
   });
-  const [internshipData, setinternship] = useState<any>([]);
   useEffect(() => {
     const fetchdata = async () => {
       try {
         const res = await axios.get(
-          'https://internshala-clone-y2p2.onrender.com/api/internship'
+          'https://internshalarepo.onrender.com/api/internship'
         );
         setinternship(res.data);
-        setfilteredInternships(res.data);
+        setFilteredInternships(res.data);
+        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -79,7 +63,7 @@ const index = () => {
         .includes(filter.location.toLowerCase());
       return matchesCategory && matchesLocation;
     });
-    setfilteredInternships(filtered);
+    setFilteredInternships(filtered);
   }, [filter, internshipData]);
   const handlefilterchange = (e: any) => {
     const { name, value, type, checked } = e.target;
@@ -99,7 +83,7 @@ const index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 my-0">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row gap-8">
           {/* Filter  */}
@@ -256,7 +240,7 @@ const index = () => {
                       </div>
                     </div>
                     <Link
-                      href={`/detailiternship/${internship._id}`}
+                      href={`/internship/${internship._id}`}
                       className="text-blue-600 hover:text-blue-700 font-medium"
                     >
                       View Details

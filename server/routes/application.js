@@ -3,7 +3,7 @@ const router = express.Router();
 const application = require('../models/Application');
 
 router.post('/', async (req, res) => {
-  const applicationipdata = new application({
+  const newApplication = new application({
     company: req.body.company,
     category: req.body.category,
     coverLetter: req.body.coverLetter,
@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
     Application: req.body.Application,
     body: req.body.body,
   });
-  await applicationipdata
+  await newApplication
     .save()
     .then((data) => {
       res.send(data);
