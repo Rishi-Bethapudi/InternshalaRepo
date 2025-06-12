@@ -187,9 +187,19 @@ const index = () => {
               </button>
             </div>
             <div className="bg-white p-4 rounded-lg shadow-sm mb-4">
-              <p className="text-center font-medium text-black">
-                {filteredjob.length} Jobs found
-              </p>
+              <div className="flex items-center justify-between">
+                <p className="font-medium text-black">
+                  {filteredjob.length} Jobs found
+                </p>
+                <div className="md:hidden">
+                  <button
+                    onClick={() => setisFiltervisible(!isFiltervisible)}
+                    className="p-2 rounded-md hover:bg-gray-100 transition-colors"
+                  >
+                    <Filter className="h-5 w-5 text-black" />
+                  </button>
+                </div>
+              </div>
             </div>
             <div className="space-y-4">
               {filteredjob.map((job: any) => (
