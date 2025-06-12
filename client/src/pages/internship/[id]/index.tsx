@@ -1,5 +1,5 @@
 import InternshipHeader from '@/components/InternshipHeader';
-import { selectuser } from '@/Feature/Userslice';
+// import { selectuser } from '@/Feature/Userslice';
 import axios from 'axios';
 import {
   ArrowUpRight,
