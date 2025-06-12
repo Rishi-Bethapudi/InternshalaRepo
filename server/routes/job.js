@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const Job = require('../Model/Job');
+const Job = require('../models/Job');
 
 router.post('/', async (req, res) => {
-  const jobdata = new Job({
+  const jobData = new Job({
     title: req.body.title,
     company: req.body.company,
     location: req.body.location,
@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
     CTC: req.body.CTC,
     StartDate: req.body.StartDate,
   });
-  await jobdata
+  await jobData
     .save()
     .then((data) => {
       res.send(data);
