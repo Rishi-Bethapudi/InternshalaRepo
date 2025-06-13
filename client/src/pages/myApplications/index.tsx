@@ -8,7 +8,10 @@ const MyApplicationsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('all');
   const [data, setData] = useState<any>([]);
-
+  const user = {
+    name: 'John Doe',
+    emailId: 'rishi.bethapudi8@gmail.com',
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {

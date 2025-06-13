@@ -1,5 +1,5 @@
 import InternshipHeader from '@/components/InternshipHeader';
-// import { selectuser } from '@/Feature/Userslice';
+import { selectuser } from '@/Features/UserSlice';
 import axios from 'axios';
 import {
   ArrowUpRight,
@@ -24,9 +24,7 @@ const index = () => {
   const [availability, setAvailability] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [coverLetter, setCoverLetter] = useState('');
-  const user = {
-    name: 'Rishi',
-  };
+  const user = useSelector(selectuser);
   useEffect(() => {
     const fetchData = async () => {
       try {

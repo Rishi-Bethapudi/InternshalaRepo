@@ -11,9 +11,10 @@ import {
   ChevronUp,
 } from 'lucide-react';
 import logo from '../Assets/logo.png';
+import { auth, provider } from '../firebase/firebase';
 import TwoColumnDropdown from './ui/TwoColumnDropdown';
 import { useSelector } from 'react-redux';
-// import { selectuser } from '@/Feature/Userslice';
+import { selectuser } from '@/Features/UserSlice';
 
 import {
   NavigationMenu,
@@ -23,6 +24,8 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
+import { signInWithPopup, signOut } from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 const internshipsMenu = {
   'Top Locations': [
@@ -124,13 +127,9 @@ const CoursesMenu = {
 };
 
 const Navbar = () => {
-  // const user = useSelector(selectuser);
-  const user = {
-    name: 'John Doe',
-    email: 'rishi.bethapudi8@gmial.com',
-    photo:
-      'https://internshala.com/uploads/profile_picture/student/cropped/f8ebeb7158433bd8a7ce21951e9a2b78.jpg',
-  };
+  const user = useSelector(selectuser);
+
+  // const [user, setuser] = useState<any>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [isMoreOpen, setIsMoreOpen] = useState(false);
@@ -151,22 +150,24 @@ const Navbar = () => {
   }, []);
   // const auth = getAuth();
   const handlelogin = async () => {
-    // try {
-    //   await signInWithPopup(auth, provider);
-    //   toast.success("logged in successfully");
-    // } catch (error) {
-    //   console.error(error);
-    //   toast.error("login failed");
-    // }
+    try {
+      await signInWithPopup(auth, provider);
+      toast.success('logged in successfully');
+    } catch (error) {
+      console.error(error);
+      toast.error('login failed');
+    }
     // setuser({
-    //   name: "Rahul",
-    //   email: "xyz@gmail.com",
+    //   name: 'John Doe',
+    //   email: 'rishi.bethapudi8@gmial.com',
     //   photo:
-    //     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=faces",
+    //     'https://internshala.com/uploads/profile_picture/student/cropped/f8ebeb7158433bd8a7ce21951e9a2b78.jpg',
     // });
   };
   const handlelogout = () => {
-    // signOut(auth);
+    signOut(auth);
+    // setuser(null);
+    toast.success('logged out successfully');
   };
   return (
     <div className="relative">
