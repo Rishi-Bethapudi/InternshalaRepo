@@ -39,9 +39,13 @@ const AdminLogin = () => {
       );
       toast.success('Logged in successfully');
       router.push('/adminPanel');
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      toast.error(`Invalid credentials ${error.message}`);
+      const message =
+        error?.response?.data?.message ||
+        error?.message ||
+        'Something went wrong';
+      toast.error(`Invalid credentials: ${message}`);
     } finally {
       setIsLoading(false);
     }

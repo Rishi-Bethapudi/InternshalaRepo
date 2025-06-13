@@ -69,4 +69,18 @@ router.put('/:id', async (req, res) => {
     res.status(500).json({ error: 'internal server error' });
   }
 });
+router.get('/user/:emailId', async (req, res) => {
+  const { emailId } = req.params;
+  try {
+    const data = await application.find({ email: emailId });
+    if (!data) {
+      res.status(404).json({ error: 'applications not found' });
+      return;
+    }
+    res.json(data).status(200);
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({ error: 'internal server error' });
+  }
+});
 module.exports = router;
